@@ -1,6 +1,6 @@
 # xdemo
 # 以springboot为基础的demo
-# 个人博客：http://blog.csdn.net/eumenides_
+# 个人博客：http://blog.csdn.net/eumenides_ (博客地址最后带有下划线_，直接点击访问不了，请粘贴到地址栏)
 # 访问地址：http://localhost:8080
 # 运行注意点：
 * 1.请先运行项目下的sql包下的test.sql数据库文件建库，sys_user两个用户密码都是123456(md5(password+name))，登录请使用account登录
