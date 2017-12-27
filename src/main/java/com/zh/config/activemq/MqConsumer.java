@@ -32,7 +32,7 @@ public class MqConsumer {
             throw new RuntimeException("activemq接受的消息为空!!!");
         }
         try {
-            EmailUtil.sendEmail("286910682@qq.com","测试邮件",text);
+            EmailUtil.sendEmail("xxxxxx@qq.com","测试邮件",text);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
         }
