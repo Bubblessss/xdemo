@@ -1,7 +1,7 @@
 # xdemo
 # 以springboot为基础的demo
 # 功能简介：
-* 1.shiro实现简单的登陆界面，输入账户、密码登录跳转欢迎当前用户界面可以登出
+* 1.shiro实现简单的登陆界面，输入账户、密码登录跳转欢迎当前用户界面(可以登出和测试swagger-api)
 * 2.使用redis缓存session，实现分布式session共享
 * 3.使用swagger2测试客户controller所有方法
 * 4.使用activemq、spring mail消息中间件发送邮件，异步记录操作日志
