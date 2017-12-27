@@ -1,0 +1,29 @@
+#loginDiv {
+    position: absolute;
+    width:400px;
+    height:200px;
+    left:50%;
+    top:20%;
+    margin-left:-200px;
+    margin-top:-100px;
+    padding: 20px;
+    background: #ff7b4a;
+    border-radius: 3px;
+}
+#account, #password {
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 80%;
+    border: none;
+    padding: 8px;
+    border-radius: 3px;
+}
+#login-btn {
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 80%;
+    border: none;
+    padding: 8px;
+    background-color: #ff4e6c;
+    border-radius: 3px;
+}

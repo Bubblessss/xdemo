@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zh.dao.mybatis.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zh.pojo.po.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMapDto" extends="BaseResultMap" type="com.zh.pojo.dto.UserDto" ></resultMap>
+  <select id="selectAllUsers" resultMap="BaseResultMapDto">
+    SELECT a.*,b.`name` deptName
+    FROM user a
+    JOIN dept b ON a.`dept_id` = b.`id`
+    ORDER BY a.id
+  </select>
+</mapper>
