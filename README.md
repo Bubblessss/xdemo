@@ -3,7 +3,9 @@
 # 个人博客：http://blog.csdn.net/eumenides_
 # 访问地址：http://localhost:8080
 # 运行注意点：
-  测试全部功能请自行安装redis，activemq，mongodb，nginx
+* 1.请先运行项目下的sql包下的test.sql数据库文件建库，sys_user两个用户密码都是123456(md5(password+name))，登录请使用account登录
+* 2.请在appication.properties里面自行修改邮件发送邮箱地址和专用密码(非邮箱登陆密码，需要自己进入邮箱设置),mq消费者类里修改邮件接收邮箱
+* 3.测试全部功能请自行安装redis，activemq，mongodb，nginx
 # 功能简介：
 * 1.shiro实现简单的登陆界面，输入账户、密码登录跳转欢迎当前用户界面(可以登出和测试swagger-api)
 * 2.使用redis缓存session，实现分布式session共享
