@@ -2,7 +2,8 @@
 SQLyog Ultimate v12.09 (64 bit)
 MySQL - 5.7.10-log : Database - test
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -59,7 +60,7 @@ CREATE TABLE `sys_user` (
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`name`,`account`,`password`,`status`) values (1,'张三','10000','7c3bb55af16c261cdb7ad0a4d02c11a6','Y'),(2,'李四','10001','221add3518558bb55a4b5802a2bc8421','Y');
+insert  into `sys_user`(`id`,`name`,`account`,`password`,`status`) values (1,'张三','10000','ea000b6d22e95b5ae874453918efa533','Y'),(2,'李四','10001','2f4ce48a2f919d6df49edef749142e87','Y');
 
 /*Table structure for table `user` */
 
