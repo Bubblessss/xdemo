@@ -30,7 +30,7 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @Configuration
 @EnableCaching
-@EnableRedisHttpSession
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds=3600)
 public class RedisCfg extends CachingConfigurerSupport {
 
     private Logger logger = LoggerFactory.getLogger(RedisCfg.class);
