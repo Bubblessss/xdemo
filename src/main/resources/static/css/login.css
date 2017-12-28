@@ -2,7 +2,10 @@ body{
     padding:0;
     margin:0;
 }
-#loginImg{
+.login-form {
+    margin-top:20px;
+}
+#loginImg {
     width:100%;
     height:100%;
     position:absolute;
@@ -30,7 +33,7 @@ body{
 }
 #login-btn {
     display: block;
-    margin: 20px auto 0 auto;
+    margin: 40px auto 0 auto;
     width: 80%;
     border: none;
     padding: 8px;
