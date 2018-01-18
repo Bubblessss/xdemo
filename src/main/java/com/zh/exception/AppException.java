@@ -1,10 +1,13 @@
 package com.zh.exception;
 
+import lombok.Data;
+
 /**
- * 全局自定义异常
+ * 全局业务异常
  * @author zhanghang
  * @date 2017/12/22
  */
+@Data
 public class AppException extends RuntimeException   {
 
     private static final long serialVersionUID = 1L;
@@ -19,19 +22,4 @@ public class AppException extends RuntimeException   {
         this.errorMsg = errorMsg;
     }
 
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 }

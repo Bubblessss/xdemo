@@ -1,29 +1,20 @@
 package com.zh.config.shiro;
 
-import com.zh.controller.UserController;
 import com.zh.dao.jpa.SysUserRepository;
-import com.zh.exception.AppException;
 import com.zh.exception.AppShiroException;
 import com.zh.pojo.po.SysUser;
-import com.zh.pojo.vo.Result;
-import com.zh.utils.MD5Util;
+import com.zh.utils.Md5Util;
 import com.zh.utils.MyApp;
-import com.zh.utils.SpringContext;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * 自定义认证类
@@ -70,7 +61,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         String password = String.valueOf(token.getPassword());
         SysUser sysUser = this.sysUserRepository.findByAccount(account);
         if (sysUser != null){
-            if (!MD5Util.md5(password + sysUser.getName()).equals(sysUser.getPassword())){
+            if (!Md5Util.md5(password + sysUser.getName()).equals(sysUser.getPassword())){
                 throw new AuthenticationException();
             }
             if (MyApp.SYS_USER_STATUS_Y.equals(sysUser.getStatus())) {

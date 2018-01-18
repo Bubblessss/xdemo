@@ -5,6 +5,7 @@ import com.zh.dao.jpa.UserRepository;
 import com.zh.dao.mybatis.UserMapper;
 import com.zh.pojo.po.User;
 import com.zh.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,8 @@ import java.util.List;
  * @date 2017/12/19
  */
 @Service
+@Slf4j
 public class UserServiceImpl extends BaseService<UserMapper,User> implements UserService{
-
-    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -79,7 +79,7 @@ public class UserServiceImpl extends BaseService<UserMapper,User> implements Use
             jedis = jedisPool.getResource();
             jedis.del(key);
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            log.error(e.getMessage());
         }finally {
             if (jedis != null) {
                 jedis.close();

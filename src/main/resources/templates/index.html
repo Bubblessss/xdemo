@@ -1,15 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
     <head>
+        <meta charset="UTF-8">
         <title>demo</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script type="text/javascript" src="../js/framework/jquery.min.js"></script>
         <script type="text/javascript" src="../js/app/index.js"></script>
+        <link type="text/css" rel="stylesheet" href="../css/index.css">
     </head>
     <body>
-        <h1>这里是首页</h1>
-        <p th:text="'Hello！, ' + ${name} + '!'" ></p>
-        <input type="button" value="注销" onclick="logout()">
-        <input type="button" value="swagger-api测试界面" onclick="swagger()">
+        <div id="header">
+            <p th:text="'Hello！, ' + ${name} + '!'" ></p>
+            <input type="button" value="注销" onclick="logout()">
+        </div>
+        <div id="menu">
+            <input type="button" value="swagger-api测试界面" onclick="swagger()">
+        </div>
+        <div id="content">
+            <p>内容区域</p>
+        </div>
     </body>
 </html>

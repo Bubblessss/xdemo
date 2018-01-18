@@ -1,7 +1,9 @@
 package com.zh.exception;
 
+import lombok.Data;
 import org.apache.shiro.authc.AccountException;
 
+@Data
 public class AppShiroException extends AccountException {
     private static final long serialVersionUID = 1L;
     private String errorCode;
@@ -17,19 +19,4 @@ public class AppShiroException extends AccountException {
         this.errorMsg = errorMsg;
     }
 
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 }

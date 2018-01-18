@@ -2,7 +2,7 @@ package com.zh.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zh.aop.mylog.OperateLogger;
+import com.zh.annotation.OperateLogger;
 import com.zh.pojo.dto.PageDto;
 import com.zh.pojo.po.User;
 import com.zh.pojo.vo.Result;
@@ -12,8 +12,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -35,7 +33,6 @@ import java.util.List;
 @RequestMapping("/user")
 @Api(value = "UserController",description = "用户controlle")
 public class UserController {
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
@@ -88,7 +85,7 @@ public class UserController {
             @ApiImplicitParam(name = "page", value = "起始页", paramType="form", dataType = "Long", required = true),
             @ApiImplicitParam(name = "size", value = "条数", paramType="form", dataType = "Long", required = true)
     })
-    @OperateLogger(description = "查询所有用户")
+//    @OperateLogger(description = "查询所有用户")
     public Result listUsers(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         List<User> users = this.userService.listUsers();

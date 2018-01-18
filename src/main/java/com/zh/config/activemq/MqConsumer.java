@@ -3,8 +3,7 @@ package com.zh.config.activemq;
 import com.zh.service.impl.LogService;
 import com.zh.utils.EmailUtil;
 import com.zh.utils.MyApp;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -17,8 +16,8 @@ import org.springframework.util.StringUtils;
  * @date 2017/12/19
  */
 @Component
+@Slf4j
 public class MqConsumer {
-    private Logger logger = LoggerFactory.getLogger(MqConsumer.class);
 
     @Autowired
     private LogService logService;
@@ -34,7 +33,7 @@ public class MqConsumer {
         try {
             EmailUtil.sendEmail("xxxxxx@qq.com","测试邮件",text);
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 
@@ -46,7 +45,7 @@ public class MqConsumer {
         try {
             this.logService.writeOperateLog(text);
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 }

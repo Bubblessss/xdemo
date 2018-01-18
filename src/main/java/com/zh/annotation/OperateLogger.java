@@ -1,4 +1,4 @@
-package com.zh.aop.mylog;
+package com.zh.annotation;
 
 import java.lang.annotation.*;
 

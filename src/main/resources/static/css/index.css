@@ -1,0 +1,18 @@
+#header {
+    padding:5px;
+    border: 5px solid red;
+}
+#menu {
+    position: absolute;
+    background-color:#eeeeee;
+    width:200px;
+    height:100%;
+    float:left;
+    padding:5px;
+    border: 5px solid red;
+}
+#content {
+    float:left;
+    padding:10px;
+    border: 5px solid red;
+}

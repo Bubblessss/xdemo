@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.zh.utils.MongoUtil;
 import com.zh.utils.MyApp;
 import com.zh.utils.SpringContext;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
  * @date 2017/12/19
  */
 @Service
+@Slf4j
 public class LogService{
-    private Logger logger = LoggerFactory.getLogger(LogService.class);
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -50,7 +51,7 @@ public class LogService{
                 jedis.rpush(MyApp.OPERATE_LOG_LIST,content);
             }
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            log.error(e.getMessage());
         }finally {
             if (jedis != null) {
                 jedis.close();
