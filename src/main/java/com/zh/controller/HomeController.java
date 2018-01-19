@@ -1,9 +1,9 @@
 package com.zh.controller;
 
-import com.zh.dao.jpa.SysUserRepository;
 import com.zh.exception.AppShiroException;
 import com.zh.pojo.po.SysUser;
-import com.zh.pojo.vo.Result;
+import com.zh.utils.LoadProperty;
+import com.zh.utils.ShiroUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,9 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * 登录controller
@@ -29,7 +26,9 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class HomeController {
     @Autowired
-    private SysUserRepository sysUserRepository;
+    private ShiroUtil shiroUtil;
+    @Autowired
+    private LoadProperty loadProperty;
 
     @GetMapping("/login")
     public String login() {
@@ -37,32 +36,33 @@ public class HomeController {
     }
 
     @RequestMapping("/doLogin")
-    @ResponseBody
-    public Result doLogin(SysUser sysUser, HttpSession session) {
+    public String doLogin(SysUser sysUser, Model model) {
         if (StringUtils.isEmpty(sysUser.getAccount()) || StringUtils.isEmpty(sysUser.getPassword())){
-            return new Result(false, "请输入用户名或密码!");
+            model.addAttribute("loginFail","请输入用户名或密码!");
+            return "login";
         }
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(sysUser.getAccount(), sysUser.getPassword());
         try {
             subject.login(token);
-        } catch (AppShiroException e) {
+        }  catch (AppShiroException e){
             log.error(e.getMessage());
             token.clear();
-            return new Result(false, e.getMessage());
+            model.addAttribute("loginFail",this.loadProperty.getValue(e.getErrorCode()));
+            return "login";
         } catch (AuthenticationException e) {
             log.error(e.getMessage());
             token.clear();
-            return new Result(false, "用户名或密码错误");
+            model.addAttribute("loginFail","用户名或密码错误!");
+            return "login";
         }
-        sysUser = this.sysUserRepository.findByAccount(sysUser.getAccount());
-        session.setAttribute("name", sysUser.getName());
-        return new Result();
+        model.addAttribute("currentSysUserName", this.shiroUtil.getCurrentSysUser().getName());
+        return "index";
     }
 
    @GetMapping("/main")
-    public String toIndex(Model model,HttpSession session){
-        model.addAttribute("name", session.getAttribute("name"));
+    public String toIndex(Model model){
+        model.addAttribute("currentSysUserName", this.shiroUtil.getCurrentSysUser().getName());
         return "index";
     }
 

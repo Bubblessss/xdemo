@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+    <style>
+        .error-box{
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 0 0;
+        }
+        .imgbox{
+            width: 90%;
+            height: auto;
+            margin-bottom: 100px;
+
+        }
+        .error-box span{
+            display: inline-block;
+        }
+        .font2{
+            font-size: 30px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<!--主体内容-->
+       <div class="error-box">
+           <img src="/img/error.png" alt="" class="imgbox">
+               <span class="font2">错误代码:<span class="font2" data-th-text="${exception.code}"></span></span>
+                <br/>
+               <span class="font2">错误信息:<span class="font2" data-th-text="${exception.msg}"></span></span>
+           <a href="/home/mian" style="font-size: 30px;font-weight: 700;">返回主页</a>
+           <br>
+       </div>
+</body>
+</html>

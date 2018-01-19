@@ -34,7 +34,8 @@ body{
 #login-btn {
     display: block;
     margin: 40px auto 0 auto;
-    width: 80%;
+    height: 35px;
+    width: 84%;
     border: none;
     padding: 8px;
     background-color: #ff4e6c;

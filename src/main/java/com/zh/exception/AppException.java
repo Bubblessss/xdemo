@@ -17,9 +17,9 @@ public class AppException extends RuntimeException   {
     public AppException() {
     }
 
-    public AppException(String errorCode, String errorMsg) {
+    public AppException(String errorCode) {
+        super(errorCode);
         this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
     }
 
 }

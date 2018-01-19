@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
     <head>
         <meta charset="UTF-8">
         <title>demo</title>
@@ -9,7 +9,7 @@
     </head>
     <body>
         <div id="header">
-            <p th:text="'Hello！, ' + ${name} + '!'" ></p>
+            <p data-th-text="'Hello！, ' + ${currentSysUserName} + '!'" ></p>
             <input type="button" value="注销" onclick="logout()">
         </div>
         <div id="menu">

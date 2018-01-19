@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
     <head>
         <meta charset="UTF-8">
         <title>登录</title>
@@ -10,10 +10,11 @@
     <body>
     <img id="loginImg" src="../img/login.jpg"/>
     <div id="loginDiv">
-        <form class="login-form">
-            <input id="account" type="text" name="account" placeholder="账户"/>
-            <input id="password" type="password" name="password" placeholder="密码"/>
-            <input id="login-btn" type="button" value="登录" onclick="doLogin()">
+        <form id="loginForm" class="login-form" action="/home/doLogin" method="post">
+            <input id="account" type="text" name="account" placeholder="账户" required="required"/>
+            <input id="password" type="password" name="password" placeholder="密码" required="required"/>
+            <button id="login-btn" type="submit">登录</button>
+            <p style="color: red;text-align: center" data-th-text="${loginFail}"></p>
         </form>
     </div>
     </body>

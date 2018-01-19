@@ -12,11 +12,9 @@ public class AppShiroException extends AccountException {
     public AppShiroException() {
     }
 
-
-    public AppShiroException(String errorCode, String errorMsg) {
-        super(errorMsg);
+    public AppShiroException(String errorCode) {
+        super(errorCode);
         this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
     }
 
 }

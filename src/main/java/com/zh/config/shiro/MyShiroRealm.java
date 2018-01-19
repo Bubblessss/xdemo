@@ -5,15 +5,12 @@ import com.zh.exception.AppShiroException;
 import com.zh.pojo.po.SysUser;
 import com.zh.utils.Md5Util;
 import com.zh.utils.MyApp;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,21 +20,8 @@ import org.springframework.stereotype.Component;
  * @date 2017/12/22
  */
 @Component
-@PropertySource(value = "classpath:/exception.properties",encoding = "utf-8")
+@Slf4j
 public class MyShiroRealm extends AuthorizingRealm {
-    private Logger logger = LoggerFactory.getLogger(MyShiroRealm.class);
-
-    private static String SYS_USER_ERR_100 = "SYS_USER_ERR_100";
-    @Value("${SYS_USER_ERR_100}")
-    private String SYS_USER_ERR_100_MSG;
-
-    private static String SYS_USER_ERR_101 = "SYS_USER_ERR_101";
-    @Value("${SYS_USER_ERR_101}")
-    private String SYS_USER_ERR_101_MSG;
-
-    private static String BASE_NULL_USER_ERR = "BASE_NULL_USER_ERR";
-    @Value("${BASE_NULL_USER_ERR}")
-    private String BASE_NULL_USER_ERR_MSG;
 
     @Autowired
     private SysUserRepository sysUserRepository;
@@ -55,7 +39,7 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken){
-        logger.info("=====================shiro开始认证身份====================");
+        log.info("=====================shiro开始认证身份====================");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String account = token.getUsername();
         String password = String.valueOf(token.getPassword());
@@ -65,15 +49,14 @@ public class MyShiroRealm extends AuthorizingRealm {
                 throw new AuthenticationException();
             }
             if (MyApp.SYS_USER_STATUS_Y.equals(sysUser.getStatus())) {
-
                 return new SimpleAuthenticationInfo(sysUser,password,this.getName());
             }else if (MyApp.SYS_USER_STATUS_N.equals(sysUser.getStatus())){
-                throw new AppShiroException(SYS_USER_ERR_100,this.SYS_USER_ERR_100_MSG);
+                throw new AppShiroException("ERR_1001");
             }else{
-                throw new AppShiroException(SYS_USER_ERR_101,this.SYS_USER_ERR_101_MSG);
+                throw new AppShiroException("ERR_0000");
             }
         }else{
-            throw new AppShiroException(BASE_NULL_USER_ERR,this.SYS_USER_ERR_100_MSG);
+            throw new AppShiroException("ERR_1000");
         }
     }
 
