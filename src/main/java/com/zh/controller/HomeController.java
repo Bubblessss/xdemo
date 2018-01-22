@@ -16,6 +16,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 登录controller
  * @author zhanghang
@@ -36,9 +38,13 @@ public class HomeController {
     }
 
     @RequestMapping("/doLogin")
-    public String doLogin(SysUser sysUser, Model model) {
+    public String doLogin(SysUser sysUser, String kaptcha,Model model, HttpSession session) {
         if (StringUtils.isEmpty(sysUser.getAccount()) || StringUtils.isEmpty(sysUser.getPassword())){
             model.addAttribute("loginFail","请输入用户名或密码!");
+            return "login";
+        }
+        if (StringUtils.isEmpty(kaptcha) || !kaptcha.equalsIgnoreCase(session.getAttribute("kaptcha").toString())){
+            model.addAttribute("loginFail","请输入正确的验证码!");
             return "login";
         }
         Subject subject = SecurityUtils.getSubject();

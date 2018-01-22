@@ -14,7 +14,7 @@ body{
 #loginDiv {
     position: absolute;
     width:400px;
-    height:200px;
+    height:270px;
     left:50%;
     top:40%;
     margin-left:-200px;
@@ -27,6 +27,13 @@ body{
     display: block;
     margin: 20px auto 0 auto;
     width: 80%;
+    border: none;
+    padding: 8px;
+    border-radius: 3px;
+}
+#kaptcha {
+    margin: 20px auto 0 32px;
+    width: 50%;
     border: none;
     padding: 8px;
     border-radius: 3px;

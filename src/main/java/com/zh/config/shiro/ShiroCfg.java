@@ -43,6 +43,7 @@ public class ShiroCfg {
         // authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/home/doLogin", "anon");
+        filterChainDefinitionMap.put("/kaptcha/defaultKaptcha", "anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/img/**","anon");
