@@ -12,6 +12,7 @@
 * 3.使用swagger2测试客户controller所有方法
 * 4.使用activemq、spring mail消息中间件发送邮件，异步记录操作日志
 * 5.使用mybatis，jpa实现客户的增删改查，使用aop自定义注解记录操作日志入mongodb
+* 6.使用@ControllerAdvice处理全局业务异常，自定义拦截器处理404，400错误，返回统一界面
 
 # 目前整合的技术栈有:
 * 缓存:spring data redis、jedis
