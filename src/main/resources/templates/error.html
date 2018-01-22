@@ -29,11 +29,9 @@
 <!--主体内容-->
        <div class="error-box">
            <img src="/img/error.png" alt="" class="imgbox">
-               <span class="font2">错误代码:<span class="font2" data-th-text="${exception.code}"></span></span>
-                <br/>
-               <span class="font2">错误信息:<span class="font2" data-th-text="${exception.msg}"></span></span>
-           <a href="/home/mian" style="font-size: 30px;font-weight: 700;">返回主页</a>
+           <span class="font2">错误信息:<span class="font2" data-th-text="${exception.errorMsg}"></span></span>
            <br>
+           <a href="/home/main" style="font-size: 30px;font-weight: 700;">返回主页</a>
        </div>
 </body>
 </html>

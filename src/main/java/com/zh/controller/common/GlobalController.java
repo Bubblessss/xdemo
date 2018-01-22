@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 异常总拦截,返回error.html
+ * 全局controller层总处理
  * @author zhanghang
  * @date 2018/1/18
  */
@@ -27,7 +27,7 @@ public class GlobalController {
     @Autowired
     private LoadProperty loadProperty;
 
-    public static final String DEFAULT_ERROR_VIEW = "500";
+    private static final String DEFAULT_ERROR_VIEW = "error";
 
     /**
      * 应用到所有@RequestMapping注解方法，在其执行之前初始化数据绑定器
@@ -47,6 +47,15 @@ public class GlobalController {
         model.addAttribute("common", "每个页面都能看到这句话!");
     }
 
+    /**
+     * 全局业务异常总拦截,返回error.html
+     * @param req
+     * @param e
+     * @param method
+     * @param response
+     * @return
+     * @throws Exception
+     */
     @ExceptionHandler(value = Exception.class)
     public Object defaultErrorHandler(HttpServletRequest req, Exception e, HandlerMethod method, HttpServletResponse response) throws Exception {
         ResponseBody responseBody = method.getMethod().getAnnotation(ResponseBody.class);

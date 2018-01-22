@@ -2,7 +2,7 @@
 <html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
-    <title>error</title>
+    <title>404</title>
     <style>
         .error-box{
             width: 600px;
@@ -20,8 +20,11 @@
             display: inline-block;
         }
         .font2{
-            font-size: 30px;
+            font-size:60px;
             font-family: monospace;
+            display: block;
+            margin-bottom: 30px;
+            color:#ff5d2a;
         }
     </style>
 </head>
@@ -29,8 +32,9 @@
 <!--主体内容-->
        <div class="error-box">
            <img src="/img/error.png" alt="" class="imgbox">
-               <span class="font2">404</span>
+           <span class="font2">404</span>
            <br>
+           <a href="/home/main" style="font-size: 30px;font-weight: 700;">返回主页</a>
        </div>
 </body>
 </html>
