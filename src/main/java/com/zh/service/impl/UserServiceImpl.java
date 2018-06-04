@@ -1,6 +1,6 @@
 package com.zh.service.impl;
 
-import com.zh.config.activemq.MqProduct;
+import com.zh.config.rabbitmq.RabbitProduct;
 import com.zh.dao.jpa.UserRepository;
 import com.zh.dao.mybatis.UserMapper;
 import com.zh.pojo.po.User;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
@@ -28,9 +29,11 @@ public class UserServiceImpl extends BaseService<UserMapper,User> implements Use
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private MqProduct mqProduct;
+    private RabbitProduct rabbitProduct;
     @Autowired
     private JedisPool jedisPool;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public User getUserById(Integer id) {
@@ -54,7 +57,7 @@ public class UserServiceImpl extends BaseService<UserMapper,User> implements Use
         Integer uid = user.getId();
         this.userRepository.saveAndFlush(user);
         if (uid == null) {
-            mqProduct.sendMessage("新增用户:" + user.getName());
+            rabbitProduct.sendMessage("新增用户:" + user.getName());
         }
     }
 

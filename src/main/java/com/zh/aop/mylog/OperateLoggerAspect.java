@@ -2,7 +2,7 @@ package com.zh.aop.mylog;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zh.annotation.OperateLogger;
-import com.zh.config.activemq.MqProduct;
+import com.zh.config.rabbitmq.RabbitProduct;
 import com.zh.utils.MyApp;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -30,7 +30,7 @@ public class OperateLoggerAspect {
     @Autowired(required = false)
     private HttpServletRequest httpServletRequest;
     @Autowired
-    private MqProduct mqProduct;
+    private RabbitProduct rabbitProduct;
 
     @Pointcut(value = "@annotation(operateLogger)", argNames = "operateLogger")
     public void aroundPointcut(OperateLogger operateLogger){}
@@ -62,7 +62,7 @@ public class OperateLoggerAspect {
         jsonLog.put("args",JSONObject.toJSONString(map));
         //aop代理链执行之前拦截组织参数，之后记录日志，如果执行过程出现异常抛出不记录日志
         pjp.proceed();
-        this.mqProduct.writeOperateLog(jsonLog.toJSONString());
+        this.rabbitProduct.writeOperateLog(jsonLog.toJSONString());
     }
 
 }

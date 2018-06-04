@@ -39,6 +39,8 @@ public class MyApp {
 
     public static final String MQ_QUEUE_ZH = "zh-queue";
 
+    public static final String MQ_QUEUE_DELAY = "delay";
+
     /**
      * 系统用户在职
      */
