@@ -14,15 +14,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RabbitProduct{
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
     public void sendMessage(String message) {
-        this.rabbitTemplate.convertAndSend(MyApp.MQ_TOPIC_MESSAGE,message);
+        this.rabbitTemplate.convertAndSend(MyApp.MQ_DIRECT_MESSAGE,message);
     }
 
     public void writeOperateLog(String message) {
-        this.rabbitTemplate.convertAndSend(MyApp.MQ_TOPIC_OPERATE_LOG,message);
+        this.rabbitTemplate.convertAndSend(MyApp.MQ_DIRECT_OPERATE_LOG,message);
+    }
+
+    public void testTopic(String message){
+        this.rabbitTemplate.convertAndSend(MyApp.MQ_EXCHANGE_TOPIC_TEST,"test",message);
     }
 
 }
