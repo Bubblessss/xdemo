@@ -40,17 +40,33 @@ public class MyApp {
 
     public static final String MQ_TOPIC_TEST = "test_topic";
 
-    public static final String MQ_TOPIC_TEST2 = "test_topicabc";
+    public static final String MQ_TOPIC_TEST2 = "test2_topic";
 
     public static final String MQ_EXCHANGE_TOPIC_TEST = "test_topic_exchange";
 
     public static final String MQ_TOPIC_TEST_ROUTING_KEY = "test";
 
-    public static final String MQ_TOPIC_TEST2_ROUTING_KEY = "testabc";
+    public static final String MQ_TOPIC_TEST2_ROUTING_KEY = "test2";
+
+    public static final String MQ_EXCHANGE_FANOUT_TEST = "test_fanout_exchange";
 
     public static final String MQ_QUEUE_ZH = "zh-queue";
 
     public static final String MQ_QUEUE_DELAY = "delay";
+
+    public static final String MQ_QUEUE_DELAY_ROUTING_KEY = "delay";
+
+    public static final String MQ_EXCHANGE_DIRECT_DELAY = "delay_exchange";
+
+    public static final String MQ_QUEUE_RECEIVE_DELAY = "receive_delay";
+
+    public static final String MQ_QUEUE_RECEIVE_DELAY_ROUTING_KEY = "receive_delay";
+
+    public static final String MQ_EXCHANGE_DIRECT_RECEIVE_DELAY = "receive_delay_exchange";
+
+
+
+
 
     /**
      * 系统用户在职

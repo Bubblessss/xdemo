@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * activeMq消费者类
@@ -79,16 +80,37 @@ public class RabbitConsumer {
         }
     }
 
-//    @RabbitListener(queues=MyApp.MQ_TOPIC_TEST)
-    @RabbitListener(queues="testA")
-    public void receiveTestTopic(String message){
-        System.out.println("TestA Topic Receiver  : " + message);
+    @RabbitListener(queues=MyApp.MQ_TOPIC_TEST)
+    public void receiveTestTopic(String text, Message message, Channel channel){
+        log.info("Test Topic Receiver  : {}",text);
+        try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            log.error("消费失败!");
+        }
     }
 
-//    @RabbitListener(queues=MyApp.MQ_TOPIC_TEST2)
-    @RabbitListener(queues="testB")
-    public void receiveTestTopic2(String message){
-        System.out.println("TestB Topic Receiver  : " + message);
+    @RabbitListener(queues=MyApp.MQ_TOPIC_TEST2)
+    public void receiveTestTopic2(String text, Message message, Channel channel){
+        log.info("Test2 Topic Receiver  : {}",text);
+        try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            log.error("消费失败!");
+        }
+    }
+
+    @RabbitListener(queues=MyApp.MQ_QUEUE_RECEIVE_DELAY)
+    public void receiveTestDealy(String text, Message message, Channel channel){
+        log.info("接收时间:{},接受内容:{}", LocalDateTime.now(),text);
+        try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            log.error("消费失败!");
+        }
     }
 
 }
