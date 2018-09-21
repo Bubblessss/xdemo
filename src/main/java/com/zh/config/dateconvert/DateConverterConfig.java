@@ -1,4 +1,4 @@
-package com.zh.config.dateConvert;
+package com.zh.config.dateconvert;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

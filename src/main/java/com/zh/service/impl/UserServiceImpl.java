@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
@@ -32,8 +31,6 @@ public class UserServiceImpl extends BaseService<UserMapper,User> implements Use
     private RabbitProduct rabbitProduct;
     @Autowired
     private JedisPool jedisPool;
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Override
     public User getUserById(Integer id) {
